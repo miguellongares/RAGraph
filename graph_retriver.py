@@ -1,6 +1,7 @@
 # Open to discussion is which embedding model to use. The one used in the notebook is 'all-MiniLM-L6-v2'
 from sentence_transformers import SentenceTransformer
 import numpy as np
+from collections import deque
 from transformers import logging
 logging.set_verbosity_error()
 
@@ -16,8 +17,8 @@ class GraphRetriver:
         self.embedding_model = embedding_model
         #Generate the embeddings for the knowledge graph nodes to speed up the retrieval process
         self.node_embeddings = self.embedding_model.encode(list(self.knowledge_graph.G.nodes))
-    
-    def retrieve(self, query, top_k=2):
+
+    def get_relevant_nodes(self, query, top_k=2):
         #Embed the query
         query_embedding = self.embedding_model.encode(query)
         #Calculate the similarity between the query embedding and the node embeddings
@@ -25,15 +26,38 @@ class GraphRetriver:
         #Get the top_k most similar nodes
         top_k_node_idx = np.argsort(similarities)[0][-top_k:]
         top_k_nodes = [list(self.knowledge_graph.G.nodes)[idx] for idx in top_k_node_idx]
-        list_of_top_k_triplets = []
-        for node in top_k_nodes:
-            for neighbor in self.knowledge_graph.G.neighbors(node):
-                (subject, relation, object) = (node,
-                                               self.knowledge_graph.G[node][neighbor]['relation'],
-                                               neighbor)
-                list_of_top_k_triplets.append((subject, relation, object))
+        return top_k_nodes #list of the most relevat node names ['Albert', 'Phisics']
 
-        return list_of_top_k_triplets
+    def retrive_triplets_from_knowledgegraph(self, query, top_k=2, hops=2):
+        #Get the relevant nodes
+        relevant_nodes = self.get_relevant_nodes(query, top_k)
+        #Create a set of visited nodes, a queue of nodes to visit tracking depth
+        visited_nodes = set()
+        nodes_to_visit = deque()
+        list_of_triplets = []
+
+        for node in relevant_nodes:
+            visited_nodes.add(node)
+            nodes_to_visit.append((node, 0)) # 0 sets the initial depth
+
+        while nodes_to_visit:
+            node, depth = nodes_to_visit.popleft()
+            #Checks that the depth doesnt excede the max hops
+            if depth >= hops:
+                continue
+            #Get all the triplets from the neighbors
+            for neighbor in self.knowledge_graph.G[node]:
+                #get subject, releation, object
+                (s, r, o) = (node,
+                             self.knowledge_graph.G[node][neighbor]['relation'],
+                             neighbor)
+                list_of_triplets.append((s,r,o))
+                # Adds nodes to visit to the queue making sure that it has not been already visited
+                if neighbor not in visited_nodes:
+                    nodes_to_visit.append((neighbor, depth+1))
+                    visited_nodes.add(neighbor)
+            #End of retreve loop
+        return list_of_triplets
     
 
 if __name__ == "__main__":
@@ -41,5 +65,5 @@ if __name__ == "__main__":
     kg = create_dummy_knowledge_graph()
     retriever = GraphRetriver(kg)
     query = "Where was Albert Einstein born?"
-    top_k_triplets = retriever.retrieve(query)
+    top_k_triplets = retriever.retrive_triplets_from_knowledgegraph(query)
     print(top_k_triplets)

@@ -72,7 +72,7 @@ if __name__ == "__main__":
 #Retrive from graph the most relevant infromation based on the query:
     start_time = time.time()
     query = "What was the relation between Albert Einstein and Hitler?"
-    top_k_triplets = retriever.retrieve(query)
+    top_k_triplets = retriever.retrive_triplets_from_knowledgegraph(query, hops=3)
 
     #Print the retrieved triplets for the query:
     if verbose: print(f"Retrieved triplets for the query: {query}")
