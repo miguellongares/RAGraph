@@ -1,0 +1,9 @@
+# --- Python and OS Environment ---
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+test.py
+
+Backup_files/

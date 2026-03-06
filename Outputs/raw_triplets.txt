@@ -1,0 +1,29 @@
+{"named_entities": ["Albert Einstein", "14 March 1879", "18 April 1955", "German Empire", "Switzerland", "1895", "German citizenship", "1896", "mathematics and physics teaching diploma program", "University of Zurich", "PhD dissertation", "Berlin", "Prussian Academy of Sciences", "Humboldt University of Berlin", "Kaiser Wilhelm Institute for Physics", "Adolf Hitler", "Nazi", "American citizenship", "Franklin D. Roosevelt", "World War II", "Manhattan Project"]}
+{"triples":
+[
+["Albert Einstein", "born on", "14 March 1879"],
+["Albert Einstein", "died on", "18 April 1955"],
+["Albert Einstein", "originally from", "Germany"],
+["Albert Einstein", "moved to", "Switzerland"],
+["Albert Einstein", "abandoned German citizenship the next year"],
+["Albert Einstein", "enrolled at", "Swiss federal polytechnic school"],
+["Albert Einstein", "graduated", "1900"],
+["Albert Einstein", "acquired Swiss citizenship", "1901"],
+["Albert Einstein", "secured a permanent position at", "Swiss Patent Office"],
+["Albert Einstein", "submitted a successful thesis at", "University of Zurich"],
+["Albert Einstein", "moved to", "Berlin"],
+["Albert Einstein", "joined", "Prussian Academy of Sciences"],
+["Albert Einstein", "joined", "Humboldt University of Berlin"],
+["Albert Einstein", "became director of", "Kaiser Wilhelm Institute for Physics"],
+["Albert Einstein", "again became", "German citizen"],
+["Albert Einstein", "while visiting", "United States"],
+["Adolf Hitler", "came to power in", "Germany"],
+["Albert Einstein", "was horrified by", "Nazi persecution of his fellow Jews"],
+["Albert Einstein", "decided to remain in", "United States"],
+["Albert Einstein", "received American citizenship", "1940"],
+["Albert Einstein", "endorsed a letter to", "President Franklin D. Roosevelt"],
+["Albert Einstein", "letter alerted", "to the potential German nuclear weapons program"],
+["Albert Einstein", "recommended beginning", "similar research to the US"],
+["World War II", "began before", "Albert Einstein endorse the letter"]
+]
+}
