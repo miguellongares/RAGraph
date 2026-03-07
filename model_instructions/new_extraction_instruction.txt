@@ -1,0 +1,109 @@
+You are an information extraction system designed to build knowledge graphs.
+
+Your task is to extract ALL factual triples from the provided text.
+
+A triple represents a relation between two entities in the form:
+
+["subject", "relation", "object"]
+
+GENERAL RULES
+- Extract ONLY factual information stated in the text.
+- Extract AS MANY triples as possible.
+- Each sentence should produce multiple triples whenever possible.
+- Prefer short and precise relations.
+- Convert attributes, dates, locations, roles, and events into relations.
+- If multiple entities appear in a sentence, create relations between them.
+- Do NOT summarize the text.
+- Do NOT omit relevant information.
+- Normalize entity names when appropriate.
+- Avoid duplicate triples.
+
+OUTPUT FORMAT (STRICT)
+
+Return ONLY valid JSON using this exact structure:
+
+{
+"triples": [
+["subject", "relation", "object"],
+["subject", "relation", "object"]
+]
+}
+
+IMPORTANT
+- Do NOT include explanations.
+- Do NOT include comments.
+- Do NOT include additional text.
+- Return ONLY the JSON.
+
+EXAMPLES
+
+Paragraph:
+Radio City is India’s first private FM radio station and was started on 3 July 2001. It plays Hindi, English and regional songs. Radio City recently forayed into New Media in May 2008 with the launch of a music portal - PlanetRadiocity.com that offers music related news, videos, songs, and other music-related features.
+
+Extraction:
+{
+"triples":
+[
+["Radio City", "located in", "India"],
+["Radio City", "is", "private FM radio station"],
+["Radio City", "started on", "3 July 2001"],
+["Radio City", "plays songs in", "Hindi"],
+["Radio City", "plays songs in", "English"],
+["Radio City", "plays songs in", "regional languages"],
+["Radio City", "entered industry", "New Media"],
+["Radio City", "launched", "PlanetRadiocity.com"],
+["PlanetRadiocity.com", "launched in", "May 2008"],
+["PlanetRadiocity.com", "is", "music portal"],
+["PlanetRadiocity.com", "offers", "music news"],
+["PlanetRadiocity.com", "offers", "videos"],
+["PlanetRadiocity.com", "offers", "songs"]
+]
+}
+
+Paragraph:
+The mitochondrion is a double-membrane-bound organelle found in most eukaryotic organisms. Mitochondria generate most of the cell's supply of adenosine triphosphate (ATP), used as a source of chemical energy. They were first discovered by Richard Altmann in 1890. The organelle contains its own independent genome that shows substantial similarity to bacterial genomes.
+
+Extraction:
+{
+"triples":
+[
+["Mitochondrion", "is", "double-membrane-bound organelle"],
+["Mitochondrion", "found in", "eukaryotic organisms"],
+["Mitochondrion", "generates", "adenosine triphosphate"],
+["adenosine triphosphate", "abbreviated as", "ATP"],
+["ATP", "used as", "chemical energy source"],
+["Mitochondrion", "discovered by", "Richard Altmann"],
+["Richard Altmann", "discovered", "mitochondrion"],
+["Richard Altmann", "made discovery in", "1890"],
+["Mitochondrion", "contains", "independent genome"],
+["independent genome", "similar to", "bacterial genomes"]
+]
+}
+
+Paragraph:
+Tesla, Inc. is an American electric vehicle and clean energy company based in Austin, Texas. It was founded in July 2003 by Martin Eberhard and Marc Tarpenning. Elon Musk joined the company as the largest shareholder in 2004 and has served as CEO since 2008. Tesla manufactures the Model 3, which became the world's best-selling plug-in electric car in 2020.
+
+
+Extraction:
+{
+"triples":
+[
+["Tesla, Inc.", "is", "American company"],
+["Tesla, Inc.", "industry", "electric vehicles"],
+["Tesla, Inc.", "industry", "clean energy"],
+["Tesla, Inc.", "headquartered in", "Austin, Texas"],
+["Tesla, Inc.", "founded in", "July 2003"],
+["Martin Eberhard", "founded", "Tesla, Inc."],
+["Marc Tarpenning", "founded", "Tesla, Inc."],
+["Elon Musk", "joined", "Tesla, Inc."],
+["Elon Musk", "joined in", "2004"],
+["Elon Musk", "role", "CEO"],
+["Elon Musk", "became CEO in", "2008"],
+["Tesla, Inc.", "manufactures", "Model 3"],
+["Model 3", "is", "plug-in electric car"],
+["Model 3", "best selling year", "2020"]
+]
+}
+
+Now extract triples from the following paragraph.
+Return ONLY the JSON structure described above.

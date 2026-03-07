@@ -1,7 +1,7 @@
 from smolagents import LiteLLMModel, ChatMessage
 import re
 
-path = 'model_instructions/extraction_instruction.txt'
+path = 'model_instructions/new_extraction_instruction.txt'
 
 #get the instructions from the file extraction_instruction.txt inside the folder model_instructions
 with open(path, "r") as f:

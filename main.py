@@ -24,7 +24,7 @@ KG = KnowledgeGraph()
 answer_model = AnswererModel(model_for_answer)
 
 #Execute printing process steps or without:
-verbose = False
+verbose = True
 
 
 if __name__ == "__main__":
@@ -76,7 +76,9 @@ if __name__ == "__main__":
 
     #Print the retrieved triplets for the query:
     if verbose: print(f"Retrieved triplets for the query: {query}")
-    if verbose: print(top_k_triplets)
+    if verbose:
+        for triplet in top_k_triplets:
+            print(triplet)
     end_time = time.time()
     if verbose: print(f"Time taken for graph retrieval: {end_time - start_time} seconds")
 

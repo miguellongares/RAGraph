@@ -1,29 +1,36 @@
-{"named_entities": ["Albert Einstein", "14 March 1879", "18 April 1955", "German Empire", "Switzerland", "1895", "German citizenship", "1896", "mathematics and physics teaching diploma program", "University of Zurich", "PhD dissertation", "Berlin", "Prussian Academy of Sciences", "Humboldt University of Berlin", "Kaiser Wilhelm Institute for Physics", "Adolf Hitler", "Nazi", "American citizenship", "Franklin D. Roosevelt", "World War II", "Manhattan Project"]}
-{"triples":
-[
-["Albert Einstein", "born on", "14 March 1879"],
-["Albert Einstein", "died on", "18 April 1955"],
-["Albert Einstein", "originally from", "Germany"],
-["Albert Einstein", "moved to", "Switzerland"],
-["Albert Einstein", "abandoned German citizenship the next year"],
-["Albert Einstein", "enrolled at", "Swiss federal polytechnic school"],
-["Albert Einstein", "graduated", "1900"],
-["Albert Einstein", "acquired Swiss citizenship", "1901"],
-["Albert Einstein", "secured a permanent position at", "Swiss Patent Office"],
-["Albert Einstein", "submitted a successful thesis at", "University of Zurich"],
-["Albert Einstein", "moved to", "Berlin"],
-["Albert Einstein", "joined", "Prussian Academy of Sciences"],
-["Albert Einstein", "joined", "Humboldt University of Berlin"],
-["Albert Einstein", "became director of", "Kaiser Wilhelm Institute for Physics"],
-["Albert Einstein", "again became", "German citizen"],
-["Albert Einstein", "while visiting", "United States"],
-["Adolf Hitler", "came to power in", "Germany"],
-["Albert Einstein", "was horrified by", "Nazi persecution of his fellow Jews"],
-["Albert Einstein", "decided to remain in", "United States"],
-["Albert Einstein", "received American citizenship", "1940"],
-["Albert Einstein", "endorsed a letter to", "President Franklin D. Roosevelt"],
-["Albert Einstein", "letter alerted", "to the potential German nuclear weapons program"],
-["Albert Einstein", "recommended beginning", "similar research to the US"],
-["World War II", "began before", "Albert Einstein endorse the letter"]
-]
+```json
+{
+  "triples": [
+    ["Albert Einstein", "born on", "14 March 1879"],
+    ["Albert Einstein", "died on", "18 April 1955"],
+    ["Albert Einstein", "nationality", "German-born"],
+    ["Albert Einstein", "known for", "developing the theory of relativity"],
+    ["Albert Einstein", "contributed to", "quantum theory"],
+    ["Albert Einstein", "mass-energy equivalence formula", "E = mc^2"],
+    ["Albert Einstein", "received Nobel Prize in Physics in", "1921"],
+    ["Albert Einstein", "reason for Nobel Prize", "his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect"],
+    ["Albert Einstein", "moved to", "Switzerland in 1895"],
+    ["Albert Einstein", "forsook German citizenship", "in 1896"],
+    ["Albert Einstein", "enrolled in", "mathematics and physics teaching diploma program"],
+    ["Albert Einstein", "program location", "Swiss federal polytechnic school in Zurich"],
+    ["Albert Einstein", "graduated from", "University of Zurich in 1900"],
+    ["Albert Einstein", "acquired Swiss citizenship", "in 1901"],
+    ["Albert Einstein", "obtained citizenship", "and kept it for the rest of his life"],
+    ["Albert Einstein", "secured permanent position at", "Swiss Patent Office in Bern"],
+    ["Albert Einstein", "moved to Berlin in", "1914"],
+    ["Albert Einstein", "joined Prussian Academy of Sciences", "in 1914"],
+    ["Albert Einstein", "joined Humboldt University of Berlin", "in 1914"],
+    ["Albert Einstein", "became director of", "Kaiser Wilhelm Institute for Physics in 1917"],
+    ["Albert Einstein", "became a German citizen again", "in 1917"],
+    ["Adolf Hitler", "came to power in", "Germany in 1933"],
+    ["Albert Einstein", "visiting", "United States"],
+    ["Albert Einstein", "decided to", "remain in the US due to Nazi persecution"],
+    ["Albert Einstein", "granted", "American citizenship in 1940"],
+    ["World War II", "was approaching", "and Albert Einstein warned President Franklin D. Roosevelt"],
+    ["Albert Einstein", "endorsed letter to", "President Franklin D. Roosevelt"],
+    ["Albert Einstein", " alerted President", "about German nuclear weapons program"],
+    ["Albert Einstein", "recommended", "US begin similar research"],
+    ["Research project began", "as Manhattan Project"]
+  ]
 }
+```
