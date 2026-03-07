@@ -1,0 +1,2 @@
+Refine the write_triplets so that only the tuples are writen
+After that modify the create graph so that it manages it by chunks

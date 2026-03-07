@@ -19,6 +19,63 @@ model = LiteLLMModel(
 class ExtractionModel():
     def __init__(self, model = model):
         self.model = model
+
+
+    #Function that takes the all_text.txt file with all the merged documents to create a new document where all the triplets are stored also in raw text using the chuck_text method to process all the information without exceding the context window of the model: 
+    def write_triplets(self, input_path ='Data/all_text.txt', output_path ='Outputs/raw_triplets.txt', max_tokens = 500):
+
+        # Open input text file and output file
+        with open(input_path, "r", encoding="utf-8") as infile, \
+            open(output_path, "w", encoding="utf-8") as outfile:
+
+            buffer = ""          # Temporary text storage used to build chunks
+            chunk_id = 1         # Counter for tracking processed chunks
+
+            # Read the file line by line instead of loading the whole file into RAM
+            for line in infile:
+
+                # Add the new line to the buffer
+                buffer += line
+
+                # If the buffer has reached approximately the desired chunk size
+                # (measured in words as a proxy for tokens), process it
+                if len(buffer.split()) >= max_tokens:
+
+                    print(f"Processing chunk {chunk_id}")
+
+                    # Send the chunk to the model
+                    response = self.generate(buffer)
+
+                    # Write the raw model output for traceability/debugging
+                    outfile.write(f"\n--- CHUNK {chunk_id} RAW OUTPUT ---\n")
+                    outfile.write(response + "\n")
+
+                    # Extract structured triplets from the model response
+                    triplets = self.get_triplets(response)
+
+                    # Write each extracted triplet to the output file
+                    for triplet in triplets:
+                        outfile.write(f"{triplet}\n")
+
+                    # Reset the buffer so it does not keep growing in memory
+                    buffer = ""
+                    chunk_id += 1
+
+            # After the loop ends, there may still be leftover text in the buffer
+            # that did not reach max_tokens but still needs to be processed
+            if buffer.strip():
+
+                print(f"Processing final chunk {chunk_id}")
+
+                response = self.generate(buffer)
+
+                outfile.write(f"\n--- CHUNK {chunk_id} RAW OUTPUT ---\n")
+                outfile.write(response + "\n")
+
+                triplets = self.get_triplets(response)
+
+                for triplet in triplets:
+                    outfile.write(f"{triplet}\n")
     
     def generate(self, prompt):
         messages = [
@@ -37,7 +94,7 @@ class ExtractionModel():
     
     
     #Chunk text without cuting sentences: 
-    def chunk_text(self, text, max_tokens = 300):
+    def chunk_text(self, text, max_tokens = 400):
         # Split text into sentences (handles '.', '!', '?')
         sentences = re.findall(r'[^.!?]+[.!?]', text)
         
@@ -77,7 +134,7 @@ def merge_text_files(data_folder, output_filename):
     with open(output_filename, 'w') as outfile:
         for file_path in files_to_merge:
             try:
-                with open.file(file_path, 'r') as f:
+                with open(file_path, 'r') as f:
                     outfile.write(f.read())
                     outfile.write('/n')# Add separation
             except Exception as err:    
