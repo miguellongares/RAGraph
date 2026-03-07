@@ -59,6 +59,16 @@ class GraphRetriver:
             #End of retreve loop
         return list_of_triplets
     
+    def filter_relevant_triplets(self, query, list_of_triplets, filter_portion=0.3):
+        n_triplets_to_keep = int(len(list_of_triplets)*filter_portion)
+        query_embedding = self.embedding_model.encode(query)
+        #Convert each triplet into single text to encode the entire triplet:
+        triplets_txt = [''.join(triplet) for triplet in list_of_triplets]
+        triplets_embedding = self.embedding_model.encode(triplets_txt)
+        similarities = self.embedding_model.similarity(query_embedding, triplets_embedding)
+        top_triplets_idx = np.argsort(similarities)[0][-n_triplets_to_keep:]
+        list_of_filered_triplets = [list_of_triplets[idx] for idx in top_triplets_idx]
+        return list_of_filered_triplets
 
 if __name__ == "__main__":
     from graph_build import create_dummy_knowledge_graph
@@ -66,4 +76,7 @@ if __name__ == "__main__":
     retriever = GraphRetriver(kg)
     query = "Where was Albert Einstein born?"
     top_k_triplets = retriever.retrive_triplets_from_knowledgegraph(query)
-    print(top_k_triplets)
+    filterd_triplets = retriever.filter_relevant_triplets(query, top_k_triplets)
+    for triplet in top_k_triplets: print(triplet)
+    print('filerd ones: 0.5')
+    for triplet in filterd_triplets: print(triplet)
