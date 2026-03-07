@@ -29,8 +29,7 @@
     ["World War II", "was approaching", "and Albert Einstein warned President Franklin D. Roosevelt"],
     ["Albert Einstein", "endorsed letter to", "President Franklin D. Roosevelt"],
     ["Albert Einstein", " alerted President", "about German nuclear weapons program"],
-    ["Albert Einstein", "recommended", "US begin similar research"],
-    ["Research project began", "as Manhattan Project"]
+    ["Albert Einstein", "recommended", "US begin similar research"]
   ]
 }
 ```

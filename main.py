@@ -14,7 +14,7 @@ from answerer import AnswererModel
 load_dotenv()
 HF_TOKEN = os.environ.get("HF_TOKEN")
 model_for_extraction = InferenceClientModel(model_id = 'Qwen/Qwen2.5-Coder-7B-Instruct')
-model_for_answer = InferenceClientModel(model_id = 'Qwen/Qwen2.5-Coder-7B-Instruct')
+model_for_answer = InferenceClientModel(model_id = 'meta-llama/Meta-Llama-3.1-8B-Instruct', provider= 'novita')
 
 #>Initialize the extraction model
 extraction_model = ExtractionModel(model_for_extraction)
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
 #Retrive from graph the most relevant infromation based on the query:
     start_time = time.time()
-    query = "What was the relation between albert einstein and hitler?"
+    query = "What was the relation between adolf hitler and einstein?"
     top_k_triplets = retriever.retrive_triplets_from_knowledgegraph(query, hops=3, top_k=4)
     #Filter the top_k_triplets:
     top_k_triplets = retriever.filter_relevant_triplets(query, top_k_triplets, filter_portion=0.3)

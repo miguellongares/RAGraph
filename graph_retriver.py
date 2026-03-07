@@ -63,7 +63,7 @@ class GraphRetriver:
         n_triplets_to_keep = int(len(list_of_triplets)*filter_portion)
         query_embedding = self.embedding_model.encode(query)
         #Convert each triplet into single text to encode the entire triplet:
-        triplets_txt = [''.join(triplet) for triplet in list_of_triplets]
+        triplets_txt = [' '.join(triplet) for triplet in list_of_triplets]
         triplets_embedding = self.embedding_model.encode(triplets_txt)
         similarities = self.embedding_model.similarity(query_embedding, triplets_embedding)
         top_triplets_idx = np.argsort(similarities)[0][-n_triplets_to_keep:]
