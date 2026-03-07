@@ -1,5 +1,7 @@
 from smolagents import LiteLLMModel, ChatMessage
 import re
+import os
+import glob
 
 path = 'model_instructions/new_extraction_instruction.txt'
 
@@ -32,6 +34,56 @@ class ExtractionModel():
         # This function can be implemented to further process the model's output and extract triplets in a structured format
         pattern = r'\[\s*"([^"]+)"\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\]'
         return re.findall(pattern, text)
+    
+    
+    #Chunk text without cuting sentences: 
+    def chunk_text(self, text, max_tokens = 300):
+        # Split text into sentences (handles '.', '!', '?')
+        sentences = re.findall(r'[^.!?]+[.!?]', text)
+        
+        chunks = []
+        current_chunk = []
+        current_length = 0
+
+        for sentence in sentences:
+        # Calculate word count of the sentence
+            sentence_words = sentence.split()
+            sentence_len = len(sentence_words)
+            
+            # If adding this sentence exceeds max_tokens, save the current chunk
+            if current_length + sentence_len > max_tokens and current_chunk:
+                chunks.append(" ".join(current_chunk))
+                current_chunk = []
+                current_length = 0
+                
+            current_chunk.extend(sentence_words)
+            current_length += sentence_len
+
+        # Add the final remaining chunk
+        if current_chunk:
+            chunks.append(" ".join(current_chunk))
+            
+        return chunks
+    
+
+def merge_text_files(data_folder, output_filename):
+    if not os.path.exists(data_folder):
+        print(f"Error: Folder '{data_folder}' not found.")
+        return
+    search_pattern = os.path.join(data_folder, "*.txt")
+    files_to_merge = glob.glob(search_pattern)
+
+    count = 0
+    with open(output_filename, 'w') as outfile:
+        for file_path in files_to_merge:
+            try:
+                with open.file(file_path, 'r') as f:
+                    outfile.write(f.read())
+                    outfile.write('/n')# Add separation
+            except Exception as err:    
+                print(f'Could not read file {file_path}: {err}')
+    print('Merge files done')
+
     
 
 # Run this code to test the model:
