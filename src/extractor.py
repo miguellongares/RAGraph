@@ -25,7 +25,7 @@ class ExtractionModel():
     def write_triplets(self, input_path ='data/all_text.txt', output_path ='Outputs/raw_triplets.txt', max_tokens = 500):
 
         # Open input text file and output file
-        with open(input_path, "r", encoding="utf-8") as infile, \
+        with open(input_path, "r", encoding="utf-8", errors='replace') as infile, \
             open(output_path, "w", encoding="utf-8") as outfile:
 
             buffer = ""          # Temporary text storage used to build chunks

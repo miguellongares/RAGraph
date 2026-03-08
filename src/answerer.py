@@ -39,6 +39,8 @@ class AnswererModel():
         else: #From HF inference client model
             response = self.model(messages).content
             print(response)
+            
+        return response
 
 #run this code to test the model:
 if __name__ == "__main__":
