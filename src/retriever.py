@@ -11,7 +11,7 @@ embedding_model = SentenceTransformer(
     cache_folder="./models"
 )
 
-class GraphRetriver:
+class GraphRetriever:
     def __init__(self, knowledge_graph, embedding_model = embedding_model):
         self.knowledge_graph = knowledge_graph
         self.embedding_model = embedding_model
@@ -78,7 +78,7 @@ class GraphRetriver:
         return list_of_filtered_triplets
 
 if __name__ == "__main__":
-    from src.graph_build import create_dummy_knowledge_graph
+    from src.graph_builder import create_dummy_knowledge_graph
     kg = create_dummy_knowledge_graph()
     retriever = GraphRetriver(kg)
     query = "Where was Albert Einstein born?"

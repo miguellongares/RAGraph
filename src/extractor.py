@@ -88,36 +88,6 @@ class ExtractionModel():
         pattern = r"['\"](.*?)['\"],\s*['\"](.*?)['\"],\s*['\"](.*?)['\"]"
         return re.findall(pattern, text)
     
-    
-    #Chunk text without cuting sentences: 
-    def chunk_text(self, text, max_tokens = 400):
-        # Split text into sentences (handles '.', '!', '?')
-        sentences = re.findall(r'[^.!?]+[.!?]', text)
-        
-        chunks = []
-        current_chunk = []
-        current_length = 0
-
-        for sentence in sentences:
-        # Calculate word count of the sentence
-            sentence_words = sentence.split()
-            sentence_len = len(sentence_words)
-            
-            # If adding this sentence exceeds max_tokens, save the current chunk
-            if current_length + sentence_len > max_tokens and current_chunk:
-                chunks.append(" ".join(current_chunk))
-                current_chunk = []
-                current_length = 0
-                
-            current_chunk.extend(sentence_words)
-            current_length += sentence_len
-
-        # Add the final remaining chunk
-        if current_chunk:
-            chunks.append(" ".join(current_chunk))
-            
-        return chunks
-    
 
 def merge_text_files(data_folder, output_filename):
     if not os.path.exists(data_folder):
