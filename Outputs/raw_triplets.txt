@@ -1,302 +1,129 @@
-
---- CHUNK 1 RAW OUTPUT ---
-```json
-{
-  "triples": [
-    ["Adolf Hitler", "was born on", "20 April 1889"],
-    ["Adolf Hitler", "died on", "30 April 1945"],
-    ["Adolf Hitler", "born in", "Braunau am Inn in Austria-Hungary"],
-    ["Adolf Hitler", "moved to Germany in", "1913"],
-    ["Adolf Hitler", "received", "Iron Cross"],
-    ["Adolf Hitler", "joined the German Workers' Party (DAP)", "in 1919"],
-    ["Adolf Hitler", "appointed as leader of", "Nazi Party in 1921"],
-    ["Adolf Hitler", "attempted to seize government power", "failed coup in Munich in 1923"],
-    ["Adolf Hitler", "sentenced to", "five years in prison"],
-    ["Adolf Hitler", "dictated his autobiography", "Mein Kampf in prison"],
-    ["Albert Einstein", "was born on", "14 March 1879"],
-    ["Albert Einstein", "died on", "18 April 1955"],
-    ["Albert Einstein", "was born in", "German Empire"],
-    ["Albert Einstein", "moved to Switzerland in", "1895"],
-    ["Albert Einstein", "graduated from", "Swiss federal polytechnic school in Zurich in 1900"],
-    ["Albert Einstein", "acquired Swiss citizenship in", "1901"],
-    ["Albert Einstein", "secured permanent position at", "Swiss Patent Office in Bern"],
-    ["Albert Einstein", "submitted PhD dissertation to", "University of Zurich in 1905"],
-    ["Albert Einstein", "moved to Berlin in", "1914"],
-    ["Albert Einstein", "joined Prussian Academy of Sciences", "Berlin"],
-    ["Albert Einstein", "became director of", "Kaiser Wilhelm Institute for Physics in 1917"],
-    ["Albert Einstein", "became a German citizen again in", "1919"],
-    ["Adolf Hitler", "came to power in Germany in", "1933"],
-    ["Albert Einstein", "visiting United States", "when Hitler came to power in Germany"],
-    ["Albert Einstein", "decided to remain in", "United States due to Nazi persecution"],
-    ["Albert Einstein", "granted American citizenship in", "1940"],
-    ["Albert Einstein", "endorsed letter to", "President Franklin D. Roosevelt in 1941"],
-    ["Albert Einstein", "alerted president about", "potential German nuclear weapons program"],
-    ["Albert Einstein", "recommended action for", "US to begin similar research"]
-  ]
-}
-```
-('adolf hitler', 'was born on', '20 april 1889')
+('adolf hitler', 'born on', '20 april 1889')
 ('adolf hitler', 'died on', '30 april 1945')
-('adolf hitler', 'born in', 'braunau am inn in austria-hungary')
-('adolf hitler', 'moved to germany in', '1913')
-('adolf hitler', 'received', 'iron cross')
-('adolf hitler', "joined the german workers' party (dap)", 'in 1919')
-('adolf hitler', 'appointed as leader of', 'nazi party in 1921')
-('adolf hitler', 'attempted to seize government power', 'failed coup in munich in 1923')
-('adolf hitler', 'sentenced to', 'five years in prison')
-('adolf hitler', 'dictated his autobiography', 'mein kampf in prison')
-('albert einstein', 'was born on', '14 march 1879')
-('albert einstein', 'died on', '18 april 1955')
-('albert einstein', 'was born in', 'german empire')
-('albert einstein', 'moved to switzerland in', '1895')
-('albert einstein', 'graduated from', 'swiss federal polytechnic school in zurich in 1900')
-('albert einstein', 'acquired swiss citizenship in', '1901')
-('albert einstein', 'secured permanent position at', 'swiss patent office in bern')
-('albert einstein', 'submitted phd dissertation to', 'university of zurich in 1905')
-('albert einstein', 'moved to berlin in', '1914')
-('albert einstein', 'joined prussian academy of sciences', 'berlin')
-('albert einstein', 'became director of', 'kaiser wilhelm institute for physics in 1917')
-('albert einstein', 'became a german citizen again in', '1919')
-('adolf hitler', 'came to power in germany in', '1933')
-('albert einstein', 'visiting united states', 'when hitler came to power in germany')
-('albert einstein', 'decided to remain in', 'united states due to nazi persecution')
-('albert einstein', 'granted american citizenship in', '1940')
-('albert einstein', 'endorsed letter to', 'president franklin d. roosevelt in 1941')
-('albert einstein', 'alerted president about', 'potential german nuclear weapons program')
-('albert einstein', 'recommended action for', 'us to begin similar research')
-
---- CHUNK 2 RAW OUTPUT ---
-```json
-{
-"triples":
-[
-["Einstein", "lived in", "Hyde Park, New York"],
-["Einstein", "attended", "Harvard University"],
-["Einstein", "published paper in", "1905"],
-["Einstein", "outlined theory of", "photoelectric effect"],
-["Einstein", "explained phenomenon", "Brownian motion"],
-["Einstein", "proposed theory", "special theory of relativity"],
-["Einstein", "introduced concept", "mass-energy equivalence"],
-["Einstein", "proposed theory", "general theory of relativity"],
-["Einstein", "modelled universe", "using general theory of relativity"],
-["Einstein", "introduced term", "cosmological constant"],
-["Einstein", "made contribution", "statistical mechanics"],
-["Einstein", "work involved", "quantum theory"],
-["Einstein", "developed concept", "photons"],
-["Einstein", "collaborated with", "Satyendra Nath Bose"],
-["Einstein", "layed groundwork for", "Bose-Einstein statistics"],
-["Einstein", "advocated against", "fundamental randomness in quantum theory"],
-["Einstein", "opposed view", "that 'God does not play dice'"],
-["Einstein", "attempted unification", "of theories"],
-["Einstein", "unified field theory attempt", "included electromagnetism"],
-["Einstein", "became", "increasingly isolated"],
-["Einstein", "posthumously named after", "the element Einsteinium"],
-["Time", "Person of the Century in", "1999"],
-["Roosevelt", "was born on", "January 30, 1882"],
-["Roosevelt", "died on", "April 12, 1945"],
-["Roosevelt", "served as", "32nd president of the United States"],
-["Roosevelt", "presided from", "1933 until去世"],
-["Roosevelt", "longest serving", "U.S. president"],
-["Roosevelt", "served more than", "two terms"],
-["Roosevelt", "first two terms", "centered on combating the Great Depression"],
-["Roosevelt", "third and fourth terms", "focused on U.S. involvement in World War II"],
-["Roosevelt", "part of", "Democratic Party"],
-["Roosevelt", "elected to", "New York State Senate"],
-["Roosevelt", "served Senate from", "1911 to 1913"],
-["Roosevelt", "elected", "governor of New York"],
-["Roosevelt", "served as governor from", "1929 to 1932"],
-["Roosevelt", "promoted programs", "to combat the Great Depression in New York"],
-["Roosevelt", "ran as", "Vice President on the Democratic ticket"],
-["Roosevelt", "Democratic candidate", "James M. Cox"],
-["Cox", "lost presidential election to", "Republican nominee Warren G. Harding"],
-["Oppenheimer", "born on", "April 22, 1904"],
-["Oppenheimer", " died on", "February 18, 1967"],
-["Oppenheimer", "was theoretical physicist"],
-["Oppenheimer", "directed", "Manhattan Project’s Los Alamos Laboratory during World War II"],
-["Oppenheimer", "called the ", "“father of the atomic bomb”"],
-["Oppenheimer", "overseeing development of", "first nuclear weapons"]
-]
-}
-```
-('einstein', 'lived in', 'hyde park, new york')
-('einstein', 'attended', 'harvard university')
-('einstein', 'published paper in', '1905')
-('einstein', 'outlined theory of', 'photoelectric effect')
-('einstein', 'explained phenomenon', 'brownian motion')
-('einstein', 'proposed theory', 'special theory of relativity')
-('einstein', 'introduced concept', 'mass-energy equivalence')
-('einstein', 'proposed theory', 'general theory of relativity')
-('einstein', 'modelled universe', 'using general theory of relativity')
-('einstein', 'introduced term', 'cosmological constant')
-('einstein', 'made contribution', 'statistical mechanics')
-('einstein', 'work involved', 'quantum theory')
-('einstein', 'developed concept', 'photons')
-('einstein', 'collaborated with', 'satyendra nath bose')
-('einstein', 'layed groundwork for', 'bose-einstein statistics')
-('einstein', 'advocated against', 'fundamental randomness in quantum theory')
-('einstein', 'opposed view', "that 'god does not play dice'")
-('einstein', 'attempted unification', 'of theories')
-('einstein', 'unified field theory attempt', 'included electromagnetism')
-('einstein', 'became', 'increasingly isolated')
-('einstein', 'posthumously named after', 'the element einsteinium')
-('time', 'person of the century in', '1999')
-('roosevelt', 'was born on', 'january 30, 1882')
-('roosevelt', 'died on', 'april 12, 1945')
-('roosevelt', 'served as', '32nd president of the united states')
-('roosevelt', 'presided from', '1933 until去世')
-('roosevelt', 'longest serving', 'u.s. president')
-('roosevelt', 'served more than', 'two terms')
-('roosevelt', 'first two terms', 'centered on combating the great depression')
-('roosevelt', 'third and fourth terms', 'focused on u.s. involvement in world war ii')
-('roosevelt', 'part of', 'democratic party')
-('roosevelt', 'elected to', 'new york state senate')
-('roosevelt', 'served senate from', '1911 to 1913')
-('roosevelt', 'elected', 'governor of new york')
-('roosevelt', 'served as governor from', '1929 to 1932')
-('roosevelt', 'promoted programs', 'to combat the great depression in new york')
-('roosevelt', 'ran as', 'vice president on the democratic ticket')
-('roosevelt', 'democratic candidate', 'james m. cox')
-('cox', 'lost presidential election to', 'republican nominee warren g. harding')
-('oppenheimer', 'born on', 'april 22, 1904')
-('oppenheimer', ' died on', 'february 18, 1967')
-('oppenheimer', 'directed', 'manhattan project’s los alamos laboratory during world war ii')
-('oppenheimer', 'called the ', '“father of the atomic bomb”')
-('oppenheimer', 'overseeing development of', 'first nuclear weapons')
-
---- CHUNK 3 RAW OUTPUT ---
-```json
-{
-  "triples": [
-    ["Oppenheimer", "born in", "New York City"],
-    ["Oppenheimer", "earned degree in", "chemistry"],
-    ["Oppenheimer", "earned degree in", "physics"],
-    ["Oppenheimer", "studied under", "Max Born"],
-    ["Oppenheimer", "founded", "Tesla, Inc."],
-    ["Tesla, Inc.", "established", "Martin Eberhard"],
-    ["Tesla, Inc.", "established", "Marc Tarpenning"],
-    ["Elon Musk", "became largest shareholder in", "Tesla, Inc."],
-    ["Tesla, Inc.", "appointed", "Elon Musk as CEO"],
-    ["Oppenheimer", "contributed to", "quantum mechanics"],
-    ["Oppenheimer", "contributed to", "nuclear physics"],
-    ["Oppenheimer and his students", "contributes to", "astrophysics"],
-    ["Mark Oliphant", "briefed", "Oppenheimer about nuclear weapon design"],
-    ["Oppenheimer", "recruited by", "United States Atomic Energy Commission"],
-    ["Oppenheimer", "appointed director of", "Los Alamos Laboratory"],
-    ["Oppenheimer", "directed development of", "first nuclear weapons"],
-    ["Oppenheimer", "present at", "Trinity test of atomic bomb"],
-    ["Oppenheimer", "opposed", "development of hydrogen bomb"],
-    ["Oppenheimer", "reached security clearance revocation", "1954"],
-    ["Oppenheimer", "received Enrico Fermi Award", "1963"],
-    ["Churchill", "born in", "Oxfordshire"],
-    ["Churchill", "parentage", "mixed English and American"],
-    ["Churchill", "was British statesman"], 
-    ["Churchill", "had military officer experience"],
-    ["Churchill", "had writer experience"],
-    ["Churchill", "served as Prime Minister of the United Kingdom from", "1940 to 1945"],
-    ["Churchill", "served as Prime Minister during", "Second World War"], 
-    ["Churchill", "served as Prime Minister again from", "1951 to 1955"], 
-    ["Churchill", "total time as Member of Parliament (MP)", "62 years"],
-    ["Oppenheimer", "was member of", "Conservative Party from 1940 to 1955"],
-    ["Oppenheimer", "was member of", "Liberal Party from 1904 to 1924"],
-    ["Oppenheimer", "lobbied for", "international control of nuclear power"],
-    ["Oppenheimer", "led", "Development of hydrogen bombs"],
-    ["Opennheimer", "development of hydrogen bombs", "based on ethics grounds"] 
-   ]
-}
-```
+('adolf hitler', 'citizenship of birth', 'austria-hungary')
+('adolf hitler', 'moved to', 'germany')
+('adolf hitler', 'active during', 'nazi era')
+('nazi era', 'start year', '1933')
+('nazi era', 'end year', '1945')
+('adolf hitler', 'took office as', 'dictator')
+('adolf hitler', 'rise to power through', 'leadership of nazi party')
+('adolf hitler', 'became chancellor of germany through', 'appointment by franz von papen')
+('franz von papen', 'appointed adolf hitler as', 'chancellor of germany')
+('adolf hitler', 'was sentenced to', 'five years in prison')
+('adolf hitler', 'performed action in prison', "dictated 'mein kampf'")
+('einstein', 'born on', '14 march 1879')
+('einstein', 'died on', '18 april 1955')
+('einstein', 'citizenship of birth', 'german empire')
+('einstein', 'moved to', 'switzerland')
+('einstein', 'renounced german citizenship', '1896')
+('albert einstein', 'received nobel prize in physics', '1921')
+('albert einstein', 'awarded nobel prize for', 'services to theoretical physics, especially for his discovery of the law of the photoelectric effect')
+('albert einstein', 'graduated high school', 'zurich federal polytechnic school')
+('albert einstein', 'acquired swiss citizenship', '1901')
+('albert einstein', 'worked at', 'swiss patent office in bern')
+('albert einstein', 'submitted phd thesis', 'university of zurich')
+('albert einstein', 'moved to', 'berlin')
+('albert einstein', 'joining prussian academy of sciences', '1914')
+('albert einstein', 'became director of', 'kaiser wilhelm institute for physics')
+('albert einstein', 'became reacquainted with german citizenship', '1919')
+('adolf hitler came to power in germany', 'event_date', '1933')
+('albert einstein received american citizenship', 'event_date', '1940')
+('albert einstein endorsed a letter to president franklin d. roosevelt', 'event_date', '1939')
+('enabling act of 1933', 'passed through', 'reichstag on 23 march 1933')
+('world war ii', 'outbreak caused by', "germany's invasion of poland on 1 september 1939")
+('holocaust', 'perpetrated by', 'adolf hitler')
+('einstein', 'denounced communists part of', 'international jewish conspiracy')
+('manhattan project', 'initiated due to', "einstein's recommendation")
+('special relativity', 'contribution of', 'albert einstein')
+('general theory of relativity', 'contribution of', 'albert einstein')
+("einstein's mass-energy equivalence formula e=mc2", 'related to', 'special relativity')
+('quantum theory', 'contributions by', 'albert einstein')
+('einstein', 'had career peak in', '1905')
+('einstein', 'published four papers in', '1905')
+('einstein', 'paper topic', 'photoelectric effect')
+('einstein', 'paper topic', 'brownian motion')
+('einstein', 'paper topic', 'special theory of relativity')
+('einstein', 'theory implies', 'mass-energy equivalence')
+('einstein', 'proposed', 'general theory of relativity in 1915')
+('general theory of relativity', 'applied to', 'universe modeling in 1916')
+('einstein', 'introduced', 'cosmological constant in 1916')
+('cosmological constant', 'is significant in', 'modern theoretical cosmology')
+('einstein', 'explored concepts of', 'spontaneous emission and stimulated emission in 1917')
+('spontaneous emission', 'explanation given by', 'einstein in 1917')
+('stimulated emission', 'described by', 'einstein in 1917')
+('stimulated emission', 'core of', 'laser and maser technology')
+('unified field theory', 'attempted to merge', 'gravity and electromagnetism')
+('einstein', 'left mainstream physics in later years because of', 'conflict with quantum theory')
+('many elements', 'named after', 'him includes einsteinium')
+('einstein', 'was nominated person of the century in', '1999 by time magazine')
+('franklin d. roosevelt', 'was born on', 'january 30, 1882')
+('franklin d. roosevelt', 'died on', 'april 12, 1945')
+('franklin d. roosevelt', 'served as', 'president from 1933 until his death in 1945')
+('eleanor roosevelt', 'first husband of', 'franklin d. roosevelt')
+('franklin d. roosevelt', 'was member of', 'democratic party')
+('franklin d. roosevelt', 'graduated from', 'harvard university')
+('franklin d. roosevelt', 'from new york state senate', '1911 to 1913')
+('franklin d. roosevelt', 'governor of new york', '1929 to 1932')
+('great depression', 'targeted by', 'roosevelt’s early political efforts')
+('world war ii', 'during period of leadership by', 'roosevelt')
+('oppenheimer', 'director of', 'manhattan project’s los alamos laboratory in 1945')
+('oppenheimer', 'known as the', 'father of the atomic bomb')
+('oppenheimer’s role', 'overseeing development of', 'first nuclear weapons')
 ('oppenheimer', 'born in', 'new york city')
-('oppenheimer', 'earned degree in', 'chemistry')
-('oppenheimer', 'earned degree in', 'physics')
+('oppenheimer', 'obtained degree in', 'chemistry')
+('oppenheimer', 'graduated in', '1925')
+('oppenheimer', 'obtained doctorate in', 'physics')
 ('oppenheimer', 'studied under', 'max born')
-('oppenheimer', 'founded', 'tesla, inc.')
-('tesla, inc.', 'established', 'martin eberhard')
-('tesla, inc.', 'established', 'marc tarpenning')
-('elon musk', 'became largest shareholder in', 'tesla, inc.')
-('tesla, inc.', 'appointed', 'elon musk as ceo')
-('oppenheimer', 'contributed to', 'quantum mechanics')
-('oppenheimer', 'contributed to', 'nuclear physics')
-('oppenheimer and his students', 'contributes to', 'astrophysics')
-('mark oliphant', 'briefed', 'oppenheimer about nuclear weapon design')
-('oppenheimer', 'recruited by', 'united states atomic energy commission')
+('oppenheimer', 'received appointment as', 'full professor')
+('oppenheimer', 'was made full professor at', 'university of california, berkeley')
+('oppenheimer', 'contributed to physics fields', 'quantum mechanics')
+('oppenheimer', 'contributed to physics fields', 'nuclear physics')
+('oppenheimer', 'developed', 'born–oppenheimer approximation')
+('oppenheimer', 'conducted research on', 'positrons')
+('oppenheimer', 'conducted research on', 'quantum electrodynamics')
+('oppenheimer', 'conducted research on', 'quantum field theory')
+('oppenheimer', 'participated in', 'oppenheimer–phillips process')
+('oppenheimer', 'worked on', 'manhattan project')
 ('oppenheimer', 'appointed director of', 'los alamos laboratory')
-('oppenheimer', 'directed development of', 'first nuclear weapons')
-('oppenheimer', 'present at', 'trinity test of atomic bomb')
-('oppenheimer', 'opposed', 'development of hydrogen bomb')
-('oppenheimer', 'reached security clearance revocation', '1954')
-('oppenheimer', 'received enrico fermi award', '1963')
+('oppenheimer', 'tasked with developing', 'first nuclear weapons')
+('oppenheimer', 'present at', 'trinity test')
 ('churchill', 'born in', 'oxfordshire')
-('churchill', 'parentage', 'mixed english and american')
-('churchill', 'served as prime minister of the united kingdom from', '1940 to 1945')
-('churchill', 'served as prime minister during', 'second world war')
-('churchill', 'served as prime minister again from', '1951 to 1955')
-('churchill', 'total time as member of parliament (mp)', '62 years')
-('oppenheimer', 'was member of', 'conservative party from 1940 to 1955')
-('oppenheimer', 'was member of', 'liberal party from 1904 to 1924')
-('oppenheimer', 'lobbied for', 'international control of nuclear power')
-('oppenheimer', 'led', 'development of hydrogen bombs')
-('opennheimer', 'development of hydrogen bombs', 'based on ethics grounds')
-
---- CHUNK 4 RAW OUTPUT ---
-```json
-{
-  "triples": [
-    ["Churchill", "was during", "his so-called 'wilderness years'"],
-    ["Churchill", "called for", "rearmament"],
-    ["Churchill", "countered the threat of", "militarism in Nazi Germany"],
-    ["Second World War", "outbreak found Churchill in", "First Lord of the Admiralty"],
-    ["Churchill", "became Prime Minister in", "May 1940"],
-    ["Prime Minister", "succeeding Neville Chamberlain was", "Churchill"],
-    ["Churchill", "formed", "national government"],
-    ["national government", "oversaw", "British involvement in Allied war effort"],
-    ["Allied war effort", "against Axis powers resulted in", "victory in 1945"],
-    ["post-war general election", "Conservatives defeated was", "Churchill"],
-    ["Churchill", "began his Leader of the Opposition"],
-    ["Cold War", "developing with the Soviet Union saw Churchill warn about", "an 'iron curtain' of Soviet influence"],
-    ["Churchill", "promoted", "European unity"],
-    ["Churchill", "wrote several books about", "his experience during the war"],
-    ["Churchill", "won the Nobel Prize in Literature in", "1953"],
-    ["Neville Chamberlain", "lost position after being Prime Minister"],
-    ["Churchill", "returned to office in", "1951"],
-    ["Churchill's second term", "preoccupied with foreign affairs, especially", "Anglo-American relations"],
-    ["British Empire", "preservation was a priority during his second term"],
-    ["India", "no longer part of", "the British Empire"],
-    ["Churchill's second term", "domestically focused on", "extensive and successful housebuilding programme"],
-    ["Churchill", "resigned in", "1955"],
-    ["Churchill", "remained an MP until", "1964"],
-    ["Churchill upon", "death in 1965", "given a state funeral"],
-    ["Churchill", "one of the 20th century's most significant figures, remained popular in the UK"],
-    ["Churchill", "generally viewed as", "a victorious wartime leader"],
-    ["Churchill", "played an integral role in", "defending liberal democracy against the spread of fascism"],
-    ["Churchill", "considered a", "staunch imperialist"],
-    ["Churchill", "criticised for comments on", "race"],
-    ["Churchill", "criticised for wartime decisions", "area bombing"],
-    ["historians rank", "Churchill as one of the greatest British prime ministers"]
-  ]
-}
-```
-('churchill', 'was during', "his so-called 'wilderness years'")
-('churchill', 'called for', 'rearmament')
-('churchill', 'countered the threat of', 'militarism in nazi germany')
-('second world war', 'outbreak found churchill in', 'first lord of the admiralty')
-('churchill', 'became prime minister in', 'may 1940')
-('prime minister', 'succeeding neville chamberlain was', 'churchill')
+('churchill', 'was prime minister of the united kingdom from', '1940 to 1945')
+('churchill', 'was prime minister of the united kingdom from', '1951 to 1955')
+('churchill', 'represented constituencies in', 'british parliament')
+('churchill', 'lived from', '30 november 1874 to 24 january 1965')
+('churchill', 'joined british army in', '1895')
+('churchill', 'participated in actions in', 'british india')
+('churchill', 'participated in actions in', 'mahdist war')
+('churchill', 'participated in actions in', 'second boer war')
+('churchill', 'became famous as', 'war correspondent')
+('churchill', 'wrote books about', 'his campaigns')
+('churchill', 'defected from conservative party to', 'liberal party')
+('churchill', 'was president of board of trade in', "asquith's liberal government")
+('churchill', 'later held position of', 'home secretary')
+('churchill', 'oversaw naval attack on', 'dardanelles')
+('churchill', 'was demoted to', 'chancellor of the duchy of lancaster')
+('churchill', 'resigned in november', '1915')
+('churchill', 'returned to government under', 'david lloyd george')
+('churchill', 'was chancellor of the exchequer in', "stanley baldwin's conservative government")
+('churchill', 'reinstated in 2022', 'following vacating of 1954 decision')
+('churchill', 'was out of government during', "his 'wilderness years' in the 1930s")
+('churchill', 'led the call for rearmament to', 'counter the threat of militarism in nazi germany')
+('second world war', 'outbreak', 'churchill being re-appointed first lord of the admiralty')
+('churchill', 'became prime minister', 'in may 1940')
+('neville chamberlain', 'succeeded by', 'churchill as prime minister')
 ('churchill', 'formed', 'national government')
-('national government', 'oversaw', 'british involvement in allied war effort')
-('allied war effort', 'against axis powers resulted in', 'victory in 1945')
-('post-war general election', 'conservatives defeated was', 'churchill')
-('cold war', 'developing with the soviet union saw churchill warn about', "an 'iron curtain' of soviet influence")
-('churchill', 'promoted', 'european unity')
-('churchill', 'wrote several books about', 'his experience during the war')
-('churchill', 'won the nobel prize in literature in', '1953')
-('churchill', 'returned to office in', '1951')
-("churchill's second term", 'preoccupied with foreign affairs, especially', 'anglo-american relations')
-('india', 'no longer part of', 'the british empire')
-("churchill's second term", 'domestically focused on', 'extensive and successful housebuilding programme')
-('churchill', 'resigned in', '1955')
-('churchill', 'remained an mp until', '1964')
-('churchill upon', 'death in 1965', 'given a state funeral')
-('churchill', 'generally viewed as', 'a victorious wartime leader')
+('churchill', 'oversaw', 'british involvement in the allied war effort against the axis powers')
+('british', 'defeated the axis powers with', "churchill's leadership")
+('churchill', 'won the nobel prize in literature', 'in 1953')
+('churchill', 'lost the 1950 election', 'but won in 1951')
+('churchill', 'had a brief illness during', 'his second term in office')
+('churchill', 'resigned from office', 'in 1955')
+('churchill', 'remained an mp until', '1964 upon his death in 1965')
+('churchill', 'given state funeral', 'upon his death in 1965')
+('churchill', 'viewed as', "one of the 20th century's most significant figures")
+('churchill', 'uk population views him as', 'popular')
 ('churchill', 'played an integral role in', 'defending liberal democracy against the spread of fascism')
-('churchill', 'considered a', 'staunch imperialist')
-('churchill', 'criticised for comments on', 'race')
-('churchill', 'criticised for wartime decisions', 'area bombing')
+('churchill', 'was a strong advocate for', 'imperialism')
+('churchill', 'criticised for comments regarding', 'race')
+('churchell', 'criticised for wartime decisions including', 'area bombing')

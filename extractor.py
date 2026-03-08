@@ -46,10 +46,6 @@ class ExtractionModel():
                     # Send the chunk to the model
                     response = self.generate(buffer)
 
-                    # Write the raw model output for traceability/debugging
-                    outfile.write(f"\n--- CHUNK {chunk_id} RAW OUTPUT ---\n")
-                    outfile.write(response + "\n")
-
                     # Extract structured triplets from the model response
                     triplets = self.get_triplets(response)
 
@@ -69,27 +65,27 @@ class ExtractionModel():
 
                 response = self.generate(buffer)
 
-                outfile.write(f"\n--- CHUNK {chunk_id} RAW OUTPUT ---\n")
-                outfile.write(response + "\n")
-
                 triplets = self.get_triplets(response)
 
                 for triplet in triplets:
                     outfile.write(f"{triplet}\n")
     
     def generate(self, prompt):
+
         messages = [
             ChatMessage(role="system", content=[{"type": "text", "text": instructions}]),
             ChatMessage(role="user", content=[{"type": "text", "text": prompt}])
         ]
+
         response = self.model.generate(messages=messages)
+
         return response.content
     
     def get_triplets(self, text):
         #Normalize the text by removing uppercase letters and extra spaces
         text = text.lower().strip()
         # This function can be implemented to further process the model's output and extract triplets in a structured format
-        pattern = r'\[\s*"([^"]+)"\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\]'
+        pattern = r"['\"](.*?)['\"],\s*['\"](.*?)['\"],\s*['\"](.*?)['\"]"
         return re.findall(pattern, text)
     
     

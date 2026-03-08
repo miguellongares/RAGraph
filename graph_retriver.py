@@ -22,7 +22,7 @@ class GraphRetriver:
         #Embed the query
         query_embedding = self.embedding_model.encode(query)
         #Calculate the similarity between the query embedding and the node embeddings
-        similarities = self.embedding_model.similarity(query_embedding, self.node_embeddings)
+        similarities = self.embedding_model.similarity(query_embedding, self.node_embeddings) #
         #Get the top_k most similar nodes
         top_k_node_idx = np.argsort(similarities)[0][-top_k:]
         top_k_nodes = [list(self.knowledge_graph.G.nodes)[idx] for idx in top_k_node_idx]
@@ -59,16 +59,23 @@ class GraphRetriver:
             #End of retreve loop
         return list_of_triplets
     
-    def filter_relevant_triplets(self, query, list_of_triplets, filter_portion=0.3):
-        n_triplets_to_keep = int(len(list_of_triplets)*filter_portion)
+
+    def filter_relevant_triplets(self, query, list_of_triplets, threshold=0.4):
+        #Encode query and triplets
         query_embedding = self.embedding_model.encode(query)
-        #Convert each triplet into single text to encode the entire triplet:
         triplets_txt = [' '.join(triplet) for triplet in list_of_triplets]
         triplets_embedding = self.embedding_model.encode(triplets_txt)
-        similarities = self.embedding_model.similarity(query_embedding, triplets_embedding)
-        top_triplets_idx = np.argsort(similarities)[0][-n_triplets_to_keep:]
-        list_of_filered_triplets = [list_of_triplets[idx] for idx in top_triplets_idx]
-        return list_of_filered_triplets
+
+        similarities = self.embedding_model.similarity(query_embedding, triplets_embedding)[0]
+
+        # Filter based on the threshold
+        # We use enumerate to keep track of the original index in list_of_triplets
+        list_of_filtered_triplets = [
+            list_of_triplets[i] 
+            for i, score in enumerate(similarities) 
+            if score >= threshold
+        ]
+        return list_of_filtered_triplets
 
 if __name__ == "__main__":
     from graph_build import create_dummy_knowledge_graph

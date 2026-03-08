@@ -42,8 +42,7 @@ if __name__ == "__main__":
     triplets_path = 'Outputs/raw_triplets.txt'
     if os.path.exists(triplets_path):
         with open(triplets_path, 'r') as f:
-            raw_triplets = f.read()
-        triplets = extraction_model.get_triplets(raw_triplets)
+            triplets = f.read()
         
     #If no extraction made, extract triplets and store it in the triplets_path
     else:
@@ -53,11 +52,17 @@ if __name__ == "__main__":
                                         output_path= triplets_path)
         #Extracting triplets from the model output...
         print(f'Raw triplets saved to {triplets_path}')
+        #Get triplets from the triplets path:
+        with open(triplets_path, 'r') as f:
+            triplets = f.read()
+
+    #Load the triplets as a list:
+    triplets = extraction_model.get_triplets(triplets)
 
     end_time = time.time()#End the timer
     if verbose: print(f"Time taken for text extraction: {end_time - start_time} seconds")
 
-""" #Create the knowledge graph:
+#Create the knowledge graph:
     start_time = time.time() #Timer for knowledge graph creation
     KG.build_graph(triplets)
     end_time = time.time()
@@ -71,10 +76,10 @@ if __name__ == "__main__":
 
 #Retrive from graph the most relevant infromation based on the query:
     start_time = time.time()
-    query = "What was the relation between adolf hitler and einstein?"
+    query = "What was the relation between Adolf Hitler and Churchill?"
     top_k_triplets = retriever.retrive_triplets_from_knowledgegraph(query, hops=3, top_k=4)
     #Filter the top_k_triplets:
-    top_k_triplets = retriever.filter_relevant_triplets(query, top_k_triplets, filter_portion=0.3)
+    top_k_triplets = retriever.filter_relevant_triplets(query, top_k_triplets, threshold=0.4)
     
 
     #Print the retrieved triplets for the query:
@@ -88,5 +93,5 @@ if __name__ == "__main__":
 #Use the answer model to respond to the query using the retrieved information:
     print('\n\n')
     print(f'The answering the question:\n{query}')
-    answer_model.generate(query=query, triplets=top_k_triplets) """
+    answer_model.generate(query=query, triplets=top_k_triplets)
     
