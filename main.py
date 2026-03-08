@@ -4,10 +4,10 @@ from smolagents import InferenceClientModel
 from dotenv import load_dotenv
 import os
 
-from extractor import ExtractionModel, merge_text_files
-from graph_build import KnowledgeGraph
-from graph_retriver import GraphRetriver
-from answerer import AnswererModel
+from src.extractor import ExtractionModel, merge_text_files
+from src.graph_build import KnowledgeGraph
+from src.graph_retriver import GraphRetriver
+from src.answerer import AnswererModel
 
 ###Use model form Hugging Face Inference API:
 #load the HF_Token from the .env file
@@ -29,17 +29,17 @@ verbose = True
 
 if __name__ == "__main__":
 #Load document text to process:
-    raw_text_data_folder= "Data/Raw_text_data"
-    merged_text_file = "Data/all_text.txt"
+    raw_text_data_folder= "data/Raw_text_data"
+    merged_text_file = "data/all_text.txt"
     merge_text_files(
         data_folder=raw_text_data_folder,
-        output_filename=merged_text_file)#All text in one txt file Data/all_text.txt
+        output_filename=merged_text_file)#All text in one txt file data/all_text.txt
     
 #Creation of infromation triplets from all the wanted documents:
     start_time = time.time() #Timer to meassure extraction time
     
     #Check if the extraction has been already made, since it is the most demanding task:
-    triplets_path = 'Outputs/raw_triplets.txt'
+    triplets_path = 'outputs/raw_triplets.txt'
     if os.path.exists(triplets_path):
         with open(triplets_path, 'r') as f:
             triplets = f.read()
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
 #Retrive from graph the most relevant infromation based on the query:
     start_time = time.time()
-    query = "What was the relation between Adolf Hitler and Churchill?"
+    query = "How was albert einstein involved in the world war 2?"
     top_k_triplets = retriever.retrive_triplets_from_knowledgegraph(query, hops=3, top_k=4)
     #Filter the top_k_triplets:
     top_k_triplets = retriever.filter_relevant_triplets(query, top_k_triplets, threshold=0.4)

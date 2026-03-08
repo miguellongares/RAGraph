@@ -78,7 +78,7 @@ class GraphRetriver:
         return list_of_filtered_triplets
 
 if __name__ == "__main__":
-    from graph_build import create_dummy_knowledge_graph
+    from src.graph_build import create_dummy_knowledge_graph
     kg = create_dummy_knowledge_graph()
     retriever = GraphRetriver(kg)
     query = "Where was Albert Einstein born?"

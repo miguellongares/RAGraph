@@ -22,7 +22,7 @@ class ExtractionModel():
 
 
     #Function that takes the all_text.txt file with all the merged documents to create a new document where all the triplets are stored also in raw text using the chuck_text method to process all the information without exceding the context window of the model: 
-    def write_triplets(self, input_path ='Data/all_text.txt', output_path ='Outputs/raw_triplets.txt', max_tokens = 500):
+    def write_triplets(self, input_path ='data/all_text.txt', output_path ='Outputs/raw_triplets.txt', max_tokens = 500):
 
         # Open input text file and output file
         with open(input_path, "r", encoding="utf-8") as infile, \
@@ -141,7 +141,7 @@ def merge_text_files(data_folder, output_filename):
 
 # Run this code to test the model:
 if __name__ == "__main__":
-    with open("Data/Albert_Einstein.txt", "r") as f:
+    with open("data/Albert_Einstein.txt", "r") as f:
         text = f.read()
     extraction_model = ExtractionModel(model)
     extracted_triplets = extraction_model.generate(text)
