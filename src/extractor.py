@@ -33,52 +33,37 @@ class ExtractionModel():
 
             # Read the file line by line instead of loading the whole file into RAM
             for line in infile:
-
                 # Add the new line to the buffer
                 buffer += line
-
                 # If the buffer has reached approximately the desired chunk size
                 # (measured in words as a proxy for tokens), process it
                 if len(buffer.split()) >= max_tokens:
-
                     print(f"Processing chunk {chunk_id}")
-
                     # Send the chunk to the model
                     response = self.generate(buffer)
-
                     # Extract structured triplets from the model response
                     triplets = self.get_triplets(response)
-
                     # Write each extracted triplet to the output file
                     for triplet in triplets:
                         outfile.write(f"{triplet}\n")
-
                     # Reset the buffer so it does not keep growing in memory
                     buffer = ""
                     chunk_id += 1
-
             # After the loop ends, there may still be leftover text in the buffer
             # that did not reach max_tokens but still needs to be processed
             if buffer.strip():
-
                 print(f"Processing final chunk {chunk_id}")
-
                 response = self.generate(buffer)
-
                 triplets = self.get_triplets(response)
-
                 for triplet in triplets:
                     outfile.write(f"{triplet}\n")
     
     def generate(self, prompt):
-
         messages = [
             ChatMessage(role="system", content=[{"type": "text", "text": instructions}]),
             ChatMessage(role="user", content=[{"type": "text", "text": prompt}])
         ]
-
         response = self.model.generate(messages=messages)
-
         return response.content
     
     def get_triplets(self, text):
@@ -96,7 +81,6 @@ def merge_text_files(data_folder, output_filename):
     search_pattern = os.path.join(data_folder, "*.txt")
     files_to_merge = glob.glob(search_pattern)
 
-    count = 0
     with open(output_filename, 'w') as outfile:
         for file_path in files_to_merge:
             try:

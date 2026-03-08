@@ -5,8 +5,8 @@ from smolagents import InferenceClientModel
 
 # Local modular imports
 from src.extractor import ExtractionModel, merge_text_files
-from src.graph_builder import KnowledgeGraph      # Fixed name
-from src.retriever import GraphRetriever          # Fixed typo
+from src.graph_builder import KnowledgeGraph      
+from src.retriever import GraphRetriever          
 from src.answerer import AnswererModel
 
 # --- CONFIGURATION ---

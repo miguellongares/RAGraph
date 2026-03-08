@@ -1,1 +1,16 @@
+# --- LLM and Agent Framework ---
 smolagents
+ollama
+litellm
+
+# --- Knowledge Graph and Visualization ---
+networkx
+matplotlib
+
+# --- Embeddings and Numerical Logic ---
+sentence-transformers
+transformers
+numpy
+
+# --- Environment and Utilities ---
+python-dotenv
