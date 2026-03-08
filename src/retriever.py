@@ -1,89 +1,101 @@
-# Open to discussion is which embedding model to use. The one used in the notebook is 'all-MiniLM-L6-v2'
-from sentence_transformers import SentenceTransformer
 import numpy as np
 from collections import deque
+from sentence_transformers import SentenceTransformer
 from transformers import logging
+
+# Suppress unnecessary transformer warnings
 logging.set_verbosity_error()
 
-#embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
-embedding_model = SentenceTransformer(
-    "sentence-transformers/all-MiniLM-L6-v2",
-    cache_folder="./models"
-)
+# Global default model with local caching
+DEFAULT_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 class GraphRetriever:
-    def __init__(self, knowledge_graph, embedding_model = embedding_model):
+    def __init__(self, knowledge_graph, model_name=DEFAULT_MODEL):
         self.knowledge_graph = knowledge_graph
-        self.embedding_model = embedding_model
-        #Generate the embeddings for the knowledge graph nodes to speed up the retrieval process
-        self.node_embeddings = self.embedding_model.encode(list(self.knowledge_graph.G.nodes))
+        self.embedding_model = SentenceTransformer(model_name, cache_folder="./models")
+        
+        # Pre-calculate node embeddings to make retrieval near-instant
+        self.nodes_list = list(self.knowledge_graph.G.nodes)
+        if self.nodes_list:
+            self.node_embeddings = self.embedding_model.encode(self.nodes_list)
+        else:
+            self.node_embeddings = None
 
-    def get_relevant_nodes(self, query, top_k=2):
-        #Embed the query
+    def _get_relevant_nodes(self, query, top_k=2):
+        """Finds the 'entry points' into the graph based on semantic similarity."""
+        if not self.nodes_list:
+            return []
+
         query_embedding = self.embedding_model.encode(query)
-        #Calculate the similarity between the query embedding and the node embeddings
-        similarities = self.embedding_model.similarity(query_embedding, self.node_embeddings) #
-        #Get the top_k most similar nodes
-        top_k_node_idx = np.argsort(similarities)[0][-top_k:]
-        top_k_nodes = [list(self.knowledge_graph.G.nodes)[idx] for idx in top_k_node_idx]
-        return top_k_nodes #list of the most relevat node names ['Albert', 'Phisics']
+        similarities = self.embedding_model.similarity(query_embedding, self.node_embeddings)[0]
+        
+        # Get indices of top_k most similar nodes
+        top_k_idx = np.argsort(similarities)[-top_k:]
+        return [self.nodes_list[idx] for idx in top_k_idx]
 
     def retrive_triplets_from_knowledgegraph(self, query, top_k=2, hops=2):
-        #Get the relevant nodes
-        relevant_nodes = self.get_relevant_nodes(query, top_k)
-        #Create a set of visited nodes, a queue of nodes to visit tracking depth
-        visited_nodes = set()
-        nodes_to_visit = deque()
-        list_of_triplets = []
+        """
+        Performs a Breadth-First Search (BFS) starting from the most relevant nodes.
+        Returns a list of triplets (subject, relation, object).
+        """
+        seed_nodes = self._get_relevant_nodes(query, top_k)
+        
+        visited = set(seed_nodes)
+        queue = deque([(node, 0) for node in seed_nodes])
+        collected_triplets = []
 
-        for node in relevant_nodes:
-            visited_nodes.add(node)
-            nodes_to_visit.append((node, 0)) # 0 sets the initial depth
+        while queue:
+            current_node, current_depth = queue.popleft()
 
-        while nodes_to_visit:
-            node, depth = nodes_to_visit.popleft()
-            #Checks that the depth doesnt excede the max hops
-            if depth >= hops:
+            if current_depth >= hops:
                 continue
-            #Get all the triplets from the neighbors
-            for neighbor in self.knowledge_graph.G[node]:
-                #get subject, releation, object
-                (s, r, o) = (node,
-                             self.knowledge_graph.G[node][neighbor]['relation'],
-                             neighbor)
-                list_of_triplets.append((s,r,o))
-                # Adds nodes to visit to the queue making sure that it has not been already visited
-                if neighbor not in visited_nodes:
-                    nodes_to_visit.append((neighbor, depth+1))
-                    visited_nodes.add(neighbor)
-            #End of retreve loop
-        return list_of_triplets
-    
 
-    def filter_relevant_triplets(self, query, list_of_triplets, threshold=0.4):
-        #Encode query and triplets
-        query_embedding = self.embedding_model.encode(query)
-        triplets_txt = [' '.join(triplet) for triplet in list_of_triplets]
-        triplets_embedding = self.embedding_model.encode(triplets_txt)
+            # Iterate through neighbors in the NetworkX graph
+            for neighbor in self.knowledge_graph.G[current_node]:
+                # Extract edge attributes
+                edge_data = self.knowledge_graph.G[current_node][neighbor]
+                relation = edge_data.get('relation', 'related_to')
+                
+                collected_triplets.append((current_node, relation, neighbor))
 
-        similarities = self.embedding_model.similarity(query_embedding, triplets_embedding)[0]
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append((neighbor, current_depth + 1))
 
-        # Filter based on the threshold
-        # We use enumerate to keep track of the original index in list_of_triplets
-        list_of_filtered_triplets = [
-            list_of_triplets[i] 
-            for i, score in enumerate(similarities) 
+        return list(set(collected_triplets))  # Remove duplicates if any
+
+    def filter_relevant_triplets(self, query, triplets, threshold=0.4):
+        """Filters the graph-traversed triplets using a semantic similarity threshold."""
+        if not triplets:
+            return []
+
+        # Convert tuples to strings for embedding: ('Einstein', 'born in', 'Germany') -> 'Einstein born in Germany'
+        triplet_strings = [' '.join(map(str, t)) for t in triplets]
+        
+        query_emb = self.embedding_model.encode(query)
+        triplet_embs = self.embedding_model.encode(triplet_strings)
+        
+        similarities = self.embedding_model.similarity(query_emb, triplet_embs)[0]
+
+        return [
+            triplets[i] for i, score in enumerate(similarities) 
             if score >= threshold
         ]
-        return list_of_filtered_triplets
 
+# --- SELF-TEST BLOCK ---
 if __name__ == "__main__":
-    from src.graph_builder import create_dummy_knowledge_graph
-    kg = create_dummy_knowledge_graph()
-    retriever = GraphRetriver(kg)
-    query = "Where was Albert Einstein born?"
-    top_k_triplets = retriever.retrive_triplets_from_knowledgegraph(query)
-    filterd_triplets = retriever.filter_relevant_triplets(query, top_k_triplets)
-    for triplet in top_k_triplets: print(triplet)
-    print('filerd ones: 0.5')
-    for triplet in filterd_triplets: print(triplet)
+    # This block only runs if you execute retriever.py directly
+    from src.graph_builder import KnowledgeGraph 
+    
+    # Mock setup
+    kg = KnowledgeGraph()
+    kg.build_graph([("Albert Einstein", "born in", "Ulm"), ("Ulm", "located in", "Germany")])
+    
+    retriever = GraphRetriever(kg)
+    test_query = "Where was Einstein born?"
+    
+    results = retriever.retrive_triplets_from_knowledgegraph(test_query, top_k=1, hops=2)
+    filtered = retriever.filter_relevant_triplets(test_query, results, threshold=0.3)
+    
+    print(f"Query: {test_query}")
+    print(f"Retrieved: {filtered}")
