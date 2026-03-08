@@ -5,5 +5,8 @@ __pycache__/
 .env
 .venv/
 test.py
+# ---Testing Notebooks ---
+*.ipynb
+
 
 Backup_files/
