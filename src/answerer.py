@@ -1,6 +1,7 @@
 import ollama
 
 path = 'model_instructions/answer_instruction.txt'
+path = 'model_instructions/answer_instruction_squad.txt'
 
 with open(path, 'r') as f:
     model_instructions = f.read()
@@ -38,7 +39,7 @@ class AnswererModel():
                 print(chunk['message']['content'], end='', flush=True)
         else: #From HF inference client model
             response = self.model(messages).content
-            print(response)
+            #print(response)
             
         return response
 

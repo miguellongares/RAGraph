@@ -283,8 +283,8 @@ F1: 1.0
 Final metrics:
 
 ```
-Exact Match: ???
-F1 Score: ???
+Exact Match: 60,5%
+F1 Score: 65,5%
 ```
 
 ---
@@ -356,7 +356,6 @@ Potential extensions include:
 - Relation normalization
 - Entity linking
 - Graph embedding retrieval
-- Hybrid document + graph retrieval
 - Graph pruning
 - Multi-hop reasoning benchmarks
 

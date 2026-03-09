@@ -73,19 +73,19 @@ def evaluate(model_answer, retriever, dataset, max_samples):
         retrieved_triplets = retriever.retrive_triplets_from_knowledgegraph(
             question,
             hops=3,
-            top_k=4
+            top_k=6
         )
         filtered_triplets = retriever.filter_relevant_triplets(
             question,
             retrieved_triplets,
-            threshold=0.4
+            threshold=0.3
         )
         # Generate answer
         prediction = model_answer.generate(
             query=question,
             triplets=filtered_triplets
         )
-        print(prediction)
+        
         # Metrics
         em = exact_match(prediction, gold_answer)
         f1 = f1_score(prediction, gold_answer)
@@ -98,6 +98,8 @@ def evaluate(model_answer, retriever, dataset, max_samples):
         print("Gold:", gold_answer)
         print("Pred:", prediction)
         print("EM:", em, "F1:", f1)
+        #print(f'Used triplets: {filtered_triplets}')
+        
 
     n = max_samples
 
@@ -123,21 +125,34 @@ def main():
 
     load_dotenv()
 
-    # Initialize models
+    """     # Initialize models
     model_extraction = InferenceClientModel(
         model_id='Qwen/Qwen2.5-Coder-7B-Instruct'
-    )
-    model_answer = InferenceClientModel(
-        model_id="meta-llama/Meta-Llama-3.1-8B-Instruct",
+    ) """
+
+    # Initialize models
+    model_extraction = InferenceClientModel(
+        model_id="deepseek-ai/DeepSeek-V3.2",
         provider="novita"
     )
+
+    """ model_answer = InferenceClientModel(
+        model_id="meta-llama/Meta-Llama-3.1-8B-Instruct",
+        provider="novita"
+    ) """
+
+    model_answer = InferenceClientModel(
+        model_id="meta-llama/Llama-3.3-70B-Instruct",
+        provider="novita"
+    )
+
     extractor = ExtractionModel(model_extraction)
     answerer = AnswererModel(model_answer)
 
 
     #Load dataset
     print("Loading SQuAD 2.0 dataset...")
-    dataset = load_dataset("squad", split="train").select(range(N_SAMPLES))
+    dataset = load_dataset("squad", split="train").select(range(10, N_SAMPLES)) #The first 10 are used for instuction
     #Merge all the context in a text file in all_text.txt:
     context = dataset[0:100:5]['context']
     with open(MERGED_TEXT_PATH, 'w', encoding='utf-8') as text_file:
@@ -178,7 +193,7 @@ def main():
         answerer,
         retriever,
         dataset,
-        max_samples=5   # change to 500+ later
+        max_samples=40   # change to 500+ later
     )
 
     print("\n========================")
