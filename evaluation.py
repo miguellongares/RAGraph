@@ -140,8 +140,8 @@ def main():
     dataset = load_dataset("squad", split="train").select(range(N_SAMPLES))
     #Merge all the context in a text file in all_text.txt:
     context = dataset[0:100:5]['context']
-    with open(MERGED_TEXT_PATH, 'w') as text_file:
-        text_file.write(str(context))
+    with open(MERGED_TEXT_PATH, 'w', encoding='utf-8') as text_file:
+        text_file.write("\n\n".join(context))
 
 
     # Triplet Extraction (with caching)
