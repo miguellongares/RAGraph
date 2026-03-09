@@ -1,8 +1,8 @@
 # GraphRAG From Scratch
 
-A lightweight **Retrieval-Augmented Generation (RAG)** pipeline that builds a **Knowledge Graph from raw text using LLM-based triplet extraction**, retrieves relevant subgraphs using semantic similarity, and generates answers grounded in the graph.
+A lightweight Retrieval-Augmented Generation (RAG) pipeline that builds a Knowledge Graph from raw text using LLM-based triplet extraction, retrieves relevant subgraphs using semantic similarity, and generates answers grounded in the graph.
 
-The goal of this project is to implement a **GraphRAG system from scratch**, without relying on existing graph-RAG frameworks.
+The goal of this project is to implement a GraphRAG system from scratch, without relying on existing graph-RAG frameworks.
 
 The pipeline extracts structured knowledge from text, builds a graph representation, retrieves relevant facts using graph traversal + semantic filtering, and uses them to generate answers.
 
@@ -10,8 +10,8 @@ The pipeline extracts structured knowledge from text, builds a graph representat
 
 # Overview
 
-Traditional RAG systems retrieve **documents or passages**.  
-GraphRAG instead retrieves **structured knowledge from a graph**.
+Traditional RAG systems retrieve documents or passages.  
+GraphRAG instead retrieves structured knowledge from a graph.
 
 This project implements the following pipeline:
 
@@ -36,20 +36,20 @@ LLM Answer Generation
 
 The system combines:
 
-- **LLMs for knowledge extraction**
-- **NetworkX for graph representation**
-- **SentenceTransformers for semantic retrieval**
+- LLMs for knowledge extraction
+- NetworkX for graph representation
+- SentenceTransformers for semantic retrieval
 
 ---
 
 # Features
 
 - Triplet extraction using an LLM
-- Automatic **Knowledge Graph construction**
-- **Graph traversal retrieval (BFS hops)**
-- **Semantic filtering using embeddings**
-- Local or remote **LLM answering**
-- **Dataset evaluation using SQuAD**
+- Automatic Knowledge Graph construction
+- Graph traversal retrieval (BFS hops)
+- Semantic filtering using embeddings
+- Local or remote LLM answering
+- Dataset evaluation using SQuAD
 - Modular architecture for experimentation
 
 ---
@@ -109,7 +109,7 @@ The extraction is chunked to avoid exceeding the LLM context window.
 
 `src/graph_builder.py`
 
-Triplets are converted into a **directed graph** using NetworkX.
+Triplets are converted into a directed graph using NetworkX.
 
 ```
 Albert Einstein ── born in ──► Ulm
@@ -152,7 +152,7 @@ This produces candidate triplets.
 
 ## 4. Context Filtering
 
-Triplets retrieved through traversal are filtered using **semantic similarity**.
+Triplets retrieved through traversal are filtered using semantic similarity.
 
 This step removes irrelevant graph edges.
 
@@ -249,23 +249,23 @@ Albert Einstein was born in Ulm, Germany.
 
 # Evaluation
 
-The system includes evaluation using the **SQuAD dataset**.
+The system includes evaluation using the SQuAD dataset.
 
 Evaluation protocol:
 
-- Use the **first 100 questions**
-- Extract **20 shared contexts**
+- Use the first 100 questions
+- Extract 20 shared contexts
 - Build the knowledge graph from those contexts
 - Evaluate question answering performance
 
 Metrics used:
 
-- **Exact Match (EM)**
-- **F1 Score**
+- Exact Match (EM)
+- F1 Score
 
 Run evaluation:
 
-```
+`
 python evaluation.py
 ```
 
@@ -339,12 +339,12 @@ Used for semantic similarity and retrieval.
 
 This project focuses on:
 
-- Building a **GraphRAG pipeline from scratch**
-- Understanding **knowledge graph retrieval**
-- Experimenting with **LLM-based information extraction**
-- Evaluating **graph-based RAG architectures**
+- Building a GraphRAG pipeline from scratch
+- Understanding knowledge graph retrieval
+- Experimenting with LLM-based information extraction
+- Evaluating graph-based RAG architectures
 
-The implementation prioritizes **clarity and modularity** to make experimentation easy.
+The implementation prioritizes clarity and modularity to make experimentation easy.
 
 ---
 
