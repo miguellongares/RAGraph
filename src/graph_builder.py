@@ -72,8 +72,8 @@ if __name__ == "__main__":
         ("Albert Einstein", "born in", "Ulm, Germany"),
         ("Albert Einstein", "died in", "Princeton, USA"),
         ("Theory of Relativity", "published in", "1905"),
-        ('Hitler', 'born in', 'Braunau am Inn, Austria'),
-        ('Hitler', 'perscuted', 'Jews'),
+        ("Albert Einstein", "sent letter to", "Franklin D. Roosevelt"),
+        ("Franklin D. Roosevelt", "was President of", "United States"),
         ('Albert Einstein', 'was', 'Jews'),
     ]
     KG = KnowledgeGraph()

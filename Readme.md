@@ -352,11 +352,13 @@ The implementation prioritizes clarity and modularity to make experimentation ea
 
 Potential extensions include:
 
-- Graph-based reasoning chains
 - Relation normalization
 - Entity linking
-- Graph embedding retrieval
+- Optimized Prompt Engineering
+- Query-based Multi-Hop Reasoning
+- Graph-based reasoning chains
 - Graph pruning
-- Multi-hop reasoning benchmarks
+- Meta-Graph
+
 
 ---

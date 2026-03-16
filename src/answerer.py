@@ -50,11 +50,11 @@ if __name__ == "__main__":
         ("Albert Einstein", "born in", "Ulm, Germany"),
         ("Albert Einstein", "died in", "Princeton, USA"),
         ("Theory of Relativity", "published in", "1905"),
-        ('Hitler', 'born in', 'Braunau am Inn, Austria'),
-        ('Hitler', 'perscuted', 'Jews'),
+        ("Albert Einstein", "sent letter to", "Franklin D. Roosevelt"),
+        ("Franklin D. Roosevelt", "was President of", "United States"),
         ('Albert Einstein', 'was', 'Jews'),
     ]
-    query = 'What did Albert Einstein have in common with Hitler?'
+    query = 'What did Albert Einstein have in common with the United States of America?'
     answer_model = AnswererModel()
     answer_model.generate(query=query, triplets=list_of_triplets)
             
